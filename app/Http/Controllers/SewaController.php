@@ -5,14 +5,26 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
 use App\sewavirtual;
 use Session;
 use Image;
 use DB;
+use RealRashid\SweetAlert\Facades\Alert;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Foundation\Auth\AuthenticatesUsers;
+
 
 class SewaController extends Controller
 {
+
+    use AuthenticatesUsers;
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     public function showSewa()
     {
     	return view('content.sewa');
@@ -20,28 +32,35 @@ class SewaController extends Controller
 
     public function uploadSewa(Request $request)
     {
-    	$this->validate($request, [
-    		// 'namaPemilik' => 'required',
-    		// 'email' => 'required',
-    		// 'phone' => 'required',
-    		// 'phone_wa' => 'required',
-      //       'statusPemilik' => 'required',
-    		// 'namaVirtual' => 'required',
-      //       'jmlKamar' => 'required',
-      //       'kamarMandi' => 'required',
-      //       'kondisi' => 'required',
-      //       'jmlUnit' => 'required',
-      //       'jmlRuangan' => 'required',
-      //       'jmlLantai' => 'required',
-      //       'jmlTower' => 'required',
-      //       'luas' => 'required',
-      //       'kelengkapan' => 'required',
-      //       'hargaSewaPerTahun' => 'required',
-      //       'hargaSewaPerBulan' => 'required',
-      //       'foto' => 'required''fasilitas' => 'required'
-    	]);
+    	$validator = Validator::make($request->all(), [
+    		'namaPemilik' => 'required',
+    		'email' => 'required',
+    		'phone' => 'required',
+    		'phone_wa' => 'required',
+            'statusPemilik' => 'required',
+    		'namaVirtual' => 'required',
+            'jmlKamar' => 'required',
+            'kamarMandi' => 'required',
+            'kondisi' => 'required',
+            'jmlUnit' => 'required',
+            'jmlRuangan' => 'required',
+            'jmlLantai' => 'required',
+            'alamat' => 'required',
+            // 'jmlTower' => 'required',
+            // 'luas' => 'required',
+            // 'kelengkapan' => 'required',
+            // 'hargaSewaPerTahun' => 'required',
+            // 'hargaSewaPerBulan' => 'required',
+            'foto' => 'required',
+            'fasilitas' => 'required'
+      ]);
+      
+      if($validator->fails()){
+        return redirect()->back()->with('toast_error', $validator->messages()->all()[0])->withInput();
+      }
 
-    	$sewavirtual = new sewavirtual();
+      $sewavirtual = new sewavirtual();
+      $sewavirtual->user_id = Auth::User()->id;
     	$sewavirtual->namaPemilik = $request['namaPemilik'];
     	$sewavirtual->email = $request['email'];
     	$sewavirtual->phone = $request['phone'];
@@ -72,20 +91,9 @@ class SewaController extends Controller
     	$sewavirtual->foto = $fileName;
       $sewavirtual->deskripsi = $request['deskripsi'];
     	$sewavirtual->save();
-      return redirect('/daftarVirtual');
+      return redirect('/daftarVirtual')->with('success', 'Apartemen Berhasil Diterbitkan');      ;
 
     }
 
-    public function viewVirtual()
-    {
-      $sewavirtual = sewavirtual::all();
-      return view('content.daftarVirtual', compact('sewavirtual'));
-    }
-
-    public function detailVirtual($id)
-    {
-      $sewavirtual = sewavirtual::find($id);
-      return view('content.detailVirtual', compact('sewavirtual'));
-    }
 
 }

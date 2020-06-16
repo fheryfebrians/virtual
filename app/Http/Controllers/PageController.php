@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Contact;
+use App\sewavirtual;
 
 class PageController extends Controller
 {
@@ -51,5 +52,16 @@ class PageController extends Controller
     public function showKarir()
     {
         return view('page.karir');
+    }
+    public function viewVirtual()
+    {
+      $sewavirtual = sewavirtual::all();
+      return view('content.daftarVirtual', compact('sewavirtual'));
+    }
+
+    public function detailVirtual($id)
+    {
+      $sewavirtual = sewavirtual::find($id);
+      return view('content.detailVirtual', compact('sewavirtual'));
     }
 }

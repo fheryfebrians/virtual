@@ -123,8 +123,7 @@
 										</h4>
 									</a>
 									<div id="pay-unit" class="sub-content collapse in" aria-expanded="true">
-										<p>Estimasi Biaya Perbulan : {{ $sewavirtual->semi_annually }}</p>
-										<p>Harga : {{ $sewavirtual->annually }}</p>
+										<p>Harga : {{ $sewavirtual->harga }}</p>
 									</div>
 								</div>
 							</div>

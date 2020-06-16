@@ -28,7 +28,7 @@
 								<p class="unit-room">{{ $sewavirtual->jmlKamar }} Bedroom, {{ $sewavirtual->kamarMandi }} Bathroom</p>
 								<p class="unit-price">
 									<span>Rp</span>
-									<span>{{ $sewavirtual->semi_annually }}</span>
+									<span>{{ $sewavirtual->harga }}</span>
 									<span class="unit-price-label">per month</span>
 								</p>
 								<ul class="unit-fasilitas">

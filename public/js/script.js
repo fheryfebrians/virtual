@@ -26,32 +26,6 @@ $(document).ready(function(){
 
     });
 
-
-    $('#untuk').click(function(){
-        $('#annually').addClass('hidden');
-        $('#semi-annually').addClass('hidden');
-        $('#sell').addClass('hidden');
-    });
-    $('#for-sewa').click(function(){
-        $('#annually').removeClass('hidden');
-        $('#semi-annually').removeClass('hidden');
-        $('#sell').addClass('hidden');
-    });
-    $('#for-jual').click(function(){
-        $('#sell').removeClass('hidden');
-        $('#annually').addClass('hidden');
-        $('#semi-annually').addClass('hidden');
-    });
-    $('#for-seju').click(function(){
-        $('#annually').removeClass('hidden');
-        $('#semi-annually').removeClass('hidden');
-        $('#sell').removeClass('hidden');
-    });
-
-
-  
-
-
 });
 
 

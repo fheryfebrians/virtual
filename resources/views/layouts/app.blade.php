@@ -28,13 +28,13 @@
 
    		<!-- Script -->
    		<script src="{{ asset('js/app.js') }}"></script>
-   		<script src="{{ asset('js/jquery.js') }}"></script>
+   		{{-- <script src="{{ asset('js/jquery.js') }}" defer></script> --}}
    		<script src="{{ asset('js/bootstrap.js') }}"></script>
         <script src="{{ asset('js/all.min.js') }}"></script>
         <script src="https://unpkg.com/ionicons@4.5.10-0/dist/ionicons.js"></script>
         <script src="{{ asset('js/slick.js') }}"></script>
         <script src="{{ asset('js/script.js') }}"></script>
-        <script src="{{ asset('js/scripts.min.js') }}"></script>
+        {{-- <script src="{{ asset('js/scripts.min.js') }}" defer></script> --}}
         <script src="https://unpkg.com/leaflet@1.5.1/dist/leaflet.js"></script>
         <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v1.3.1/mapbox-gl.js'></script>
 
@@ -60,6 +60,7 @@
     </head>
     <body id="virtual">
     	<div id="app">
+            @include('sweetalert::alert')
             <div class="v top home" id="promo">
                 <div class="container">
                     <div class="row">
@@ -96,12 +97,35 @@
 
                             <!-- Right Side Of Navbar -->
                             <ul class="navbar-nav ml-auto virtual-content">
-                                <li>
-                                    <span class="wa-contact">
-                                        <i class="fas fa-phone"></i>
-                                          0812-8783-6698  
-                                    </span>
-                                </li>
+                                @guest
+                                    <li class="nav-item">
+                                        <a href="{{ route('login') }}">Login</a>
+                                    </li>
+                                    @if (Route::has('register'))
+                                        <li class="nav-item">
+                                            <a href="{{ route('register') }}">Register</a>
+                                        </li>
+                                    @endif
+                                @else
+                                    <li class="nav-item dropdown">
+                                        <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                            {{ Auth::user()->name }} <span class="caret"></span>
+                                        </a>
+
+                                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                            
+                                            <a class="dropdown-item" href="{{ route('logout') }}"
+                                            onclick="event.preventDefault();
+                                                            document.getElementById('logout-form').submit();">
+                                                {{ __('Logout') }}
+                                            </a>
+
+                                            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                                @csrf
+                                            </form>
+                                        </div>
+                                    </li>
+                                @endguest
                             </ul>
                         </div>
                     </div>

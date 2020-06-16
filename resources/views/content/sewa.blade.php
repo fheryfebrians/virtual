@@ -81,7 +81,6 @@
 												<option value="2br">2 BR</option>
 												<option value="3br+">3 BR+</option>
 											</select>
-											<span class="caret"><i class="fa fa-caret-down"></i></span>
 										</div>
 									</div>
 									<div class="col-md-4">
@@ -92,7 +91,6 @@
 												<option value="2">2</option>
 												<option value="3">3</option>
 											</select>
-											<span class="caret"><i class="fa fa-caret-down"></i></span>
 										</div>
 									</div>
 									<div class="col-md-4">
@@ -103,7 +101,6 @@
 												<option value="semi">Semi Furnished</option>
 												<option value="full">Full Furnished</option>
 											</select>
-											<span class="caret"><i class="fa fa-caret-down"></i></span>
 										</div>
 									</div>
 								</div>
@@ -143,7 +140,6 @@
 												<option value="0">--Kecamatan--</option>
 												<option value="1">Cempaka Putih Barat</option><option value="2">Cempaka Putih Timur</option><option value="3">Rawasari</option><option value="4">Cideng</option><option value="5">Dari Pulo</option><option value="6">Kebon Kelapa</option><option value="7">Gambir</option><option value="8">Johar Baru</option><option value="9">Kemayoran</option><option value="10">Mentent</option><option value="11">Sawah Besar</option><option value="12">Senen</option><option value="13">Tanah Abang</option><option value="14">Kep. Seribu</option><option value="15">Cilincing</option><option value="16">Kelapa Gading</option><option value="17">Koja</option><option value="18">Pademangan</option><option value="19">Penjaringan</option><option value="20">Tanjung Priok</option><option value="21">Cakung</option><option value="22">Cipayung</option><option value="23">Ciracas</option><option value="24">Duren Sawit</option><option value="25">Jatinegara</option><option value="26">Kramat Jati</option><option value="27">Makasar</option><option value="28">Matraman</option><option value="29">Pasar Rebo</option><option value="30">Pulogadung</option><option value="31">Cilandak</option><option value="32">Jagakarsa</option><option value="33">Kebayoran Baru</option><option value="34">Kebayoran Lama</option><option value="35">Mampang</option><option value="36">Pancoran</option><option value="37">Pasar Minggu</option><option value="38">Pesanggrahan</option><option value="39">Setiabudi</option><option value="40">Tebet</option><option value="41">Cengkareng</option><option value="42">Grogol</option><option value="43">Taman Sari</option><option value="44">Tambora</option><option value="45">Kebon Jeruk</option><option value="46">Kalideres</option><option value="47">Palmerah</option><option value="48">Kembangan</option>
 											</select>
-											<span class="caret"><i class="fa fa-caret-down"></i></span>
 										</div>
 									</div>
 									<div class="col-md-4">
@@ -152,7 +148,6 @@
 												<option value="">--Kota--</option>
 												<option value="Jakarta Pusat">Jakarta Pusat</option><option value="Jakarta Barat">Jakarta Barat</option><option value="Jakarta Timur">Jakarta Timur</option><option value="Jakarta Selatan">Jakarta Selatan</option><option value="Jakarta Utara">Jakarta Utara</option><option value="Tanggerang">Tanggerang</option><option value="Bekasi">Bekasi</option>
 											</select>
-											<span class="caret"><i class="fa fa-caret-down"></i></span>
 										</div>
 									</div>
 								</div>
@@ -199,24 +194,13 @@
 									<p class="text-danger">{{ $errors->first('fasilitas') }}</p>
 								</div>
 							</div>
-							<div class="form-group">
-								<div class="line-select">
-									<select id="unit_for" placeholder="Peruntukan" class="form-control sewa-select" name="unit-for">
-										<option value="0" id="untuk">--Peruntukan--</option>
-										<option value="sewa" id="for-sewa">Sewa</option>
-										<option value="jual" id="for-jual">Jual</option>
-										<option value="sewa-jual" id="for-seju">Sewa & Jual</option>
-									</select>
-								</div>
-							</div>
-							<div class="form-group hidden" id="annually">
-								<input id="annualy" placeholder="Harga sewa per tahun" class="form-control sewa-forms" type="text" name="annually">
-							</div>
-							<div class="form-group hidden" id="semi-annually">
-								<input id="semi_annually" placeholder="Harga sewa per 6 bulan" class="form-control sewa-forms" type="text" name="semi_annually">
-							</div>
-							<div class="form-group hidden" id="sell">
-								<input id="sell" placeholder="Harga Jual" class="form-control sewa-forms" type="text" name="sell">
+							<div class="form-group" id="harga">
+								<p>Harga Per Bulan</p>
+								<span>Rp.</span>
+								<input id="harga" placeholder="Harga" class="form-control sewa-forms" type="text" name="harga" style="left: 30px;
+								width: 80%;
+								position: relative;
+								top:-24px;">
 							</div>
 							<div id="photos" class="photos form-group">
 								Upload Foto: <input type="file" id="foto" name="foto" required= "" style="float: right; width: 80%;" required="">
@@ -273,6 +257,6 @@
 
 	@include('content.poster')
 
-	
+
 
 @endsection

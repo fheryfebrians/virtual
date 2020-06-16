@@ -15,12 +15,15 @@
 //     return view('welcome');
 // });
 
+Auth::Routes();
+Route::get('/home', 'HomeController@index')->name('home');
+
 Route::get('/', 'WelcomeController@index');
 
 Route::get('/sewa', 'SewaController@showSewa');
 Route::post('/sewa', 'SewaController@uploadSewa');
-Route::get('/daftarVirtual', 'SewaController@viewVirtual');
-Route::get('/detailVirtual/{id}', 'SewaController@detailVirtual');
+Route::get('/daftarVirtual', 'PageController@viewVirtual');
+Route::get('/detailVirtual/{id}', 'PageController@detailVirtual');
 
 
 Route::get('/syarat', 'PageController@showSyarat');
@@ -34,3 +37,10 @@ Route::get('/info', 'PageController@showInfo');
 Route::get('/karir', 'PageController@showKarir');
 
 Route::get('/peta', 'MapController@showMap');
+
+// admin
+Route::group(['prefix' => 'admin', 'middleware' => ['admin', 'auth']], function(){
+    Route::get('/', 'Admin\HomeController@showHome');
+    Route::get('/daftar-user', 'Admin\HomeController@showUser');
+    Route::get('/daftar-virtual', 'Admin\HomeController@showVirtual');
+});

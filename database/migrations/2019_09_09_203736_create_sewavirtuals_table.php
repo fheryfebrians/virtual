@@ -15,6 +15,7 @@ class CreateSewavirtualsTable extends Migration
     {
         Schema::create('sewavirtuals', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->string('user_id');
             $table->string('namaPemilik');
             $table->string('email');
             $table->string('phone');
@@ -35,9 +36,7 @@ class CreateSewavirtualsTable extends Migration
             $table->string('latitude')->nullable();
             $table->string('longitude')->nullable();
             $table->string('fasilitas');
-            $table->string('annually')->nullable();
-            $table->string('semi_annually')->nullable();
-            $table->string('sell')->nullable();
+            $table->string('harga')->nullable();
             $table->string('foto');
             $table->string('deskripsi')->nullable();
             $table->timestamps();
